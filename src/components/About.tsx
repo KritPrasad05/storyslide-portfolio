@@ -1,7 +1,7 @@
 
 import React from 'react';
 import SectionTransition from './SectionTransition';
-import { Brain, Cpu, Database, FileCode, FlaskConical, Graph } from 'lucide-react';
+import { Brain, Cpu, Database, FileCode, FlaskConical, ChartLine } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
   <div className="bg-card border border-border/40 rounded-xl p-6 hover:shadow-md transition-all duration-300 hover:translate-y-[-2px]">
@@ -29,7 +29,7 @@ const About = () => {
       description: "Building text analysis systems, sentiment analysis, and language generation models."
     },
     {
-      icon: Graph,
+      icon: ChartLine,
       title: "Computer Vision",
       description: "Developing image recognition, object detection, and visual data analysis systems."
     },
