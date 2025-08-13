@@ -21,20 +21,39 @@ const SpatialScroll = ({ children }: SpatialScrollProps) => {
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         
         if (!prefersReducedMotion) {
-          // Subtle staggered depth: farther panels start slightly behind
+          // Light zoom-in and fade effect
           gsap.fromTo(panel,
-            { z: i * -120, scale: 0.94 + i * 0.01, rotationX: 5 },
+            { 
+              scale: 0.95, 
+              opacity: 0.7,
+              y: 50
+            },
             {
-              z: 0,
               scale: 1,
-              rotationX: 0,
-              duration: 1.2,
+              opacity: 1,
+              y: 0,
+              duration: 1.0,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: panel,
+                start: "top 85%",
+                end: "top 25%",
+                scrub: 0.5,
+              }
+            }
+          );
+        } else {
+          // Simple fade for reduced motion
+          gsap.fromTo(panel,
+            { opacity: 0.8 },
+            {
+              opacity: 1,
+              duration: 0.8,
+              ease: "power1.out",
+              scrollTrigger: {
+                trigger: panel,
                 start: "top 80%",
-                end: "bottom 20%",
-                scrub: 0.8,
+                end: "top 50%",
               }
             }
           );
