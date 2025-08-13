@@ -20,7 +20,7 @@ const NavItem = ({ icon: Icon, label, href, index, activeSection }: NavItemProps
       className={`nav-item group relative flex items-center px-3 py-3 my-1 text-sm rounded-lg transition-all duration-300 ${
         isActive 
           ? 'text-primary font-medium bg-secondary/80' 
-          : 'text-gray-500 hover:text-gray-700 hover:bg-secondary/50'
+          : 'text-gray-500 hover:text-blue-70 bg-secondary/50'
       }`}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
