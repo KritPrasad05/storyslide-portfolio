@@ -20,14 +20,14 @@ const NavItem = ({ icon: Icon, label, href, index, activeSection }: NavItemProps
       className={`nav-item group relative flex items-center px-3 py-3 my-1 text-sm rounded-lg transition-all duration-300 ${
         isActive 
           ? 'text-primary font-medium bg-secondary/80' 
-          : 'text-muted-foreground hover:text-primary hover:bg-secondary/50'
+          : 'text-gray-500 hover:text-gray-700 hover:bg-secondary/50'
       }`}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
     >
       <span className="flex items-center">
-        <Icon className={`mr-2 h-5 w-5 ${isActive ? 'text-primary' : 'text-muted-foreground group-hover:text-primary'}`} />
+        <Icon className={`mr-2 h-5 w-5 ${isActive ? 'text-primary' : 'text-gray-500 group-hover:text-gray-700'}`} />
         <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">{label}</span>
       </span>
       {isActive && (
