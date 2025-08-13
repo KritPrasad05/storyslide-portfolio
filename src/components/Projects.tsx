@@ -98,42 +98,27 @@ const Projects = () => {
   
   const projects = [
     {
-      title: "Neural Network-based Image Recognition System",
-      description: "A state-of-the-art convolutional neural network for identifying objects in images with over 95% accuracy across 1000 different categories.",
+      title: "Applied AI Lab — CV Suite",
+      description: "Built 6 CV pipelines (classification, detection, segmentation) using PyTorch; transfer learning + augmentation yielded ~90–92% on validation.",
       image: imagePlaceholders[0],
-      tags: ["Computer Vision", "Deep Learning", "PyTorch", "CNN"],
+      tags: ["PyTorch", "OpenCV", "TensorBoard"],
       githubUrl: "#",
       demoUrl: "#",
       featured: true
     },
     {
-      title: "Natural Language Processing Framework",
-      description: "A comprehensive NLP framework for text analysis, sentiment classification, and language generation using transformer architecture.",
+      title: "Primetrade.ai — Trade Ranking System",
+      description: "Ranked traders across 20k+ records using XGBoost/LightGBM with engineered financial metrics and robust outlier handling.",
       image: imagePlaceholders[1],
-      tags: ["NLP", "Transformers", "BERT", "Python"],
+      tags: ["XGBoost", "LightGBM", "Python", "Pandas"],
       githubUrl: "#",
       demoUrl: "#"
     },
     {
-      title: "Reinforcement Learning for Robotics",
-      description: "An implementation of deep reinforcement learning algorithms for training robotic systems to perform complex manipulation tasks.",
+      title: "Solar Panel Efficiency",
+      description: "20k rows, stacked regressors + feature engineering; production-ready CSV generator and PyTorch NN baseline.",
       image: imagePlaceholders[2],
-      tags: ["Reinforcement Learning", "Robotics", "PyTorch", "Simulation"],
-      githubUrl: "#"
-    },
-    {
-      title: "Time Series Forecasting API",
-      description: "A machine learning API for accurate forecasting of time series data, implemented with a hybrid approach of statistical methods and deep learning.",
-      image: imagePlaceholders[3],
-      tags: ["Time Series", "LSTM", "API", "FastAPI", "Docker"],
-      githubUrl: "#",
-      demoUrl: "#"
-    },
-    {
-      title: "Anomaly Detection System",
-      description: "An unsupervised learning system for detecting anomalies in IoT sensor data, with applications in predictive maintenance for industrial equipment.",
-      image: imagePlaceholders[4],
-      tags: ["Anomaly Detection", "IoT", "Unsupervised Learning", "TensorFlow"],
+      tags: ["PyTorch", "Scikit-learn", "Feature Engineering"],
       githubUrl: "#"
     }
   ];

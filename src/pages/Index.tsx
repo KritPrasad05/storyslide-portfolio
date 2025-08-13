@@ -9,6 +9,7 @@ import Projects from '../components/Projects';
 import Certifications from '../components/Certifications';
 import LatestWork from '../components/LatestWork';
 import Contact from '../components/Contact';
+import SpatialScroll from '../components/SpatialScroll';
 import { motion } from 'framer-motion';
 
 const Index = () => {
@@ -60,14 +61,16 @@ const Index = () => {
         <Navbar />
         
         <div className="pl-[70px]"> {/* Offset for navbar */}
-          <Hero />
-          <About />
-          <Academics />
-          <Experience />
-          <Projects />
-          <Certifications />
-          <LatestWork />
-          <Contact />
+          <SpatialScroll>
+            <section className="panel"><Hero /></section>
+            <section className="panel"><About /></section>
+            <section className="panel"><Academics /></section>
+            <section className="panel"><Experience /></section>
+            <section className="panel"><Projects /></section>
+            <section className="panel"><Certifications /></section>
+            <section className="panel"><LatestWork /></section>
+            <section className="panel"><Contact /></section>
+          </SpatialScroll>
         </div>
       </main>
     </div>

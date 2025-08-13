@@ -88,7 +88,7 @@ const Navbar = () => {
       animate={{ width: isHovered ? 200 : 70 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      <div className="relative flex flex-col items-start h-full py-6 px-2 bg-glass/70 border-r border-border/30 shadow-sm backdrop-blur-md">
+      <div className="relative flex flex-col items-start h-full py-6 px-2 backdrop-blur-lg bg-white/6 border-r border-white/12 shadow-2xl">
         <div className="w-full flex items-center justify-center mb-8 px-3">
           <motion.div 
             className="text-2xl font-bold text-primary"

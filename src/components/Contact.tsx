@@ -54,7 +54,7 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      href: 'mailto:contact@example.com',
+      href: 'mailto:kritrp05@gmail.com',
     },
   ];
 
@@ -69,13 +69,13 @@ const Contact = () => {
         
         <SectionTransition delay={100}>
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 tracking-tight">
-            Contact Me
+            Let's Connect and Build Something Amazing
           </h2>
         </SectionTransition>
         
         <SectionTransition delay={200}>
           <p className="text-muted-foreground text-lg max-w-3xl mb-12">
-            I'm always interested in new opportunities, collaborations, or just connecting with fellow AI enthusiasts. Feel free to reach out through the form below or via my social media profiles.
+            Open to collaboration, internships, and mentorship. Email: kritrp05@gmail.com — or use the contact form below.
           </p>
         </SectionTransition>
         

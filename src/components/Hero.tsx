@@ -59,7 +59,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            AI/ML Engineer Portfolio
+            AI/ML Engineer — Turning data into decisions and research into production-ready models
           </motion.span>
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight text-balance"
@@ -67,7 +67,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Crafting the Future with <span className="text-gradient">Artificial Intelligence</span>
+            Crafting efficient, ethical, and <span className="text-gradient">explainable AI systems</span> for real-world impact
           </motion.h1>
           <motion.p 
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
@@ -75,7 +75,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            Transforming complex data into intelligent solutions through innovative machine learning approaches and cutting-edge AI technologies
+            Computer vision, NLP, and end-to-end ML pipelines — deployed and measurable
           </motion.p>
         </motion.div>
         

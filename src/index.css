@@ -203,6 +203,25 @@
   transform: translate(0, 0);
 }
 
+/* Spatial scroll styles */
+.panel {
+  transform-origin: center center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  padding: 2rem 0;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none !important;
+    transform: none !important;
+  }
+  .scroll-animation {
+    transition: none !important;
+  }
+}
+
 /* Menu animation */
 @keyframes navItemFade {
   from {

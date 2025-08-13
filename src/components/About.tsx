@@ -15,33 +15,28 @@ const About = () => {
   const skills = [
     {
       icon: Brain,
-      title: "Machine Learning",
-      description: "Expertise in supervised and unsupervised learning algorithms, deep learning, and neural networks."
-    },
-    {
-      icon: Cpu,
       title: "Deep Learning",
-      description: "Implementing and optimizing neural networks using TensorFlow and PyTorch frameworks."
-    },
-    {
-      icon: FileCode,
-      title: "Natural Language Processing",
-      description: "Building text analysis systems, sentiment analysis, and language generation models."
+      description: "PyTorch, TensorFlow, transfer learning, CNNs"
     },
     {
       icon: ChartLine,
       title: "Computer Vision",
-      description: "Developing image recognition, object detection, and visual data analysis systems."
+      description: "object detection, segmentation, YOLO/transfer pipelines"
+    },
+    {
+      icon: FileCode,
+      title: "NLP & Generative AI",
+      description: "transformers, RAG, fine-tuning LLMs"
+    },
+    {
+      icon: Cpu,
+      title: "ML Ops & Cloud",
+      description: "Docker, AWS, model optimization & inference"
     },
     {
       icon: Database,
-      title: "Big Data Analytics",
-      description: "Processing and analyzing large-scale datasets using distributed computing frameworks."
-    },
-    {
-      icon: FlaskConical,
-      title: "Research & Development",
-      description: "Exploring cutting-edge AI techniques and publishing research in academic journals."
+      title: "Data Science",
+      description: "EDA, feature engineering, XGBoost, LightGBM"
     }
   ];
 
@@ -64,13 +59,10 @@ const About = () => {
           <SectionTransition type="slide-right" delay={200}>
             <div className="prose prose-lg">
               <p className="text-muted-foreground leading-relaxed mb-4">
-                I am a dedicated AI/ML engineer with a passion for developing intelligent systems that solve complex real-world problems. My journey in artificial intelligence began with a fascination for how machines can learn and adapt, mimicking human cognitive functions while exceeding human capabilities in specific domains.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                With a strong foundation in mathematics, statistics, and programming, I've worked on diverse projects ranging from natural language processing to computer vision and reinforcement learning. I believe that AI has the potential to transform industries and improve human lives in meaningful ways.
+                I'm Krit Prasad — a hands-on AI/ML engineer and data scientist building practical, explainable solutions across computer vision, NLP, and time-series forecasting. I combine rigorous math and research-driven best practices with production experience (PyTorch, TensorFlow, AWS) to design scalable pipelines and models that deliver real business value.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                My approach combines theoretical knowledge with practical implementation, always staying current with the latest advancements in the field. I'm particularly interested in developing ethical AI systems that are explainable, fair, and beneficial to society.
+                Driven by curiosity, I love turning messy data into clear decisions — whether that's improving model latency for production, designing a novel CV pipeline, or explaining model outputs to stakeholders. I focus on reliability, reproducibility, and responsible AI.
               </p>
             </div>
           </SectionTransition>
