@@ -70,11 +70,11 @@ const About = () => {
           <SectionTransition type="slide-left" delay={300}>
             <div className="relative h-full flex items-center justify-center">
               <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-gradient-to-br from-secondary to-background border border-border/40">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-5/6 h-5/6 rounded-xl bg-card flex items-center justify-center">
-                    <div className="text-6xl font-bold text-primary/10">AI</div>
-                  </div>
-                </div>
+                <img 
+                  src="/lovable-uploads/4907a969-4ef5-47e8-bbef-151d8c577293.png" 
+                  alt="Krit Prasad - AI/ML Engineer" 
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,119,198,0.1),transparent_70%)]"></div>
               </div>
             </div>
