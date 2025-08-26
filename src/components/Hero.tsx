@@ -67,7 +67,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Crafting efficient, ethical, and <span className="text-gradient">explainable AI systems</span> for real-world impact
+            Welcome to <span className="text-gradient">Krit Prasad's</span> AI/ML Portfolio
           </motion.h1>
           <motion.p 
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
