@@ -12,7 +12,6 @@ export const ThemeToggle = () => {
   }, []);
 
   if (!mounted) {
-    // Return a placeholder to prevent hydration mismatch
     return (
       <div className="fixed top-6 right-4 z-50">
         <div className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-xl opacity-50" />
@@ -22,15 +21,15 @@ export const ThemeToggle = () => {
 
   const isDark = resolvedTheme === 'dark';
 
-  const handleToggle = () => {
-    console.log("Theme button clicked! Current theme:", theme, "Resolved:", resolvedTheme);
+  const handleThemeToggle = () => {
+    console.log("Theme toggle clicked! Current:", theme, "Resolved:", resolvedTheme);
     setTheme(isDark ? 'light' : 'dark');
   };
 
   return (
     <div className="fixed top-6 right-4 z-50">
       <motion.button
-        onClick={handleToggle}
+        onClick={handleThemeToggle}
         className="w-12 h-12 bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 dark:border-white/10 rounded-xl shadow-xl flex items-center justify-center hover:bg-white/20 dark:hover:bg-black/30 transition-all duration-300"
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.05 }}
