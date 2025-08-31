@@ -13,7 +13,7 @@ export const ThemeToggle = () => {
 
   if (!mounted) {
     return (
-      <div className="fixed top-6 right-4 z-50">
+      <div className="fixed top-6 right-4 z-[60]">
         <div className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-xl opacity-50" />
       </div>
     );
@@ -27,7 +27,7 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <div className="fixed top-6 right-4 z-50">
+    <div className="fixed top-6 right-4 z-[60]">
       <motion.button
         onClick={handleThemeToggle}
         className="w-12 h-12 bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 dark:border-white/10 rounded-xl shadow-xl flex items-center justify-center hover:bg-white/20 dark:hover:bg-black/30 transition-all duration-300"
