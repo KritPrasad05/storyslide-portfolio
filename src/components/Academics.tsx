@@ -51,39 +51,15 @@ const EducationCard = ({ degree, institution, location, period, description, ach
 const Academics = () => {
   const education = [
     {
-      degree: "Ph.D. in Computer Science",
-      institution: "Stanford University",
-      location: "Stanford, CA",
-      period: "2018 - 2022",
-      description: "Specialized in machine learning and artificial intelligence with a focus on deep reinforcement learning algorithms for complex decision-making systems.",
+      degree: "B.Tech in Computer Science And Business System",
+      institution: "SRM University",
+      location: "Chennai, India",
+      period: "2022-2026",
+      description: "Specialization: Blended computer science fundamentals with business systems, focusing on programming, software & hardware design, problem-solving, and managerial skills to transform data into business insights.",
       achievements: [
-        "Published 5 research papers in top-tier AI conferences (ICML, NeurIPS)",
-        "Awarded the University's Outstanding Research Award for AI Innovation",
-        "Developed a novel learning algorithm that improved training efficiency by 30%"
-      ]
-    },
-    {
-      degree: "Master of Science in Artificial Intelligence",
-      institution: "Massachusetts Institute of Technology",
-      location: "Cambridge, MA",
-      period: "2016 - 2018",
-      description: "Focused on neural networks, computer vision, and natural language processing. Thesis on attention mechanisms in transformer architectures for improved language understanding.",
-      achievements: [
-        "Graduated with High Distinction (GPA: 3.95/4.0)",
-        "Teaching Assistant for Advanced Machine Learning course",
-        "Winner of the annual AI Hackathon for healthcare solutions"
-      ]
-    },
-    {
-      degree: "Bachelor of Engineering in Computer Science",
-      institution: "University of California, Berkeley",
-      location: "Berkeley, CA",
-      period: "2012 - 2016",
-      description: "Comprehensive education in computer science fundamentals, algorithms, data structures, and introduction to machine learning and AI systems.",
-      achievements: [
-        "Dean's List for all semesters",
-        "Undergraduate Research Assistant in the AI Research Lab",
-        "Awarded Academic Excellence Scholarship for outstanding performance"
+        "Acquired strong foundation in computation, software design, and business analytics.",
+        "Completed industry-aligned curriculum designed with TCS, emphasizing both technical and managerial competencies.",
+        "Developed skills to pursue roles in technology, management, and higher studies."
       ]
     }
   ];
