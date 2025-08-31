@@ -72,46 +72,34 @@ const ExperienceCard = ({
 const Experience = () => {
   const experiences = [
     {
-      position: "Senior AI Engineer",
-      company: "TechVision AI",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
-      description: "Leading AI initiatives focused on developing state-of-the-art computer vision systems for autonomous vehicles and smart city infrastructure.",
-      responsibilities: [
-        "Architect and develop deep learning models for object detection, segmentation, and tracking in real-time video feeds",
-        "Lead a team of 5 AI engineers, mentoring junior team members and coordinating cross-functional collaboration",
-        "Design and implement efficient data pipelines for processing large-scale image and video datasets",
-        "Collaborate with product managers to define AI product roadmap and technical specifications"
-      ],
-      technologies: ["PyTorch", "TensorFlow", "CUDA", "Python", "Docker", "Kubernetes", "AWS", "Computer Vision", "MLOps"]
-    },
-    {
-      position: "Machine Learning Engineer",
-      company: "DataMind Analytics",
-      location: "Boston, MA",
-      period: "2019 - 2022",
-      description: "Developed and deployed machine learning solutions for predictive analytics, recommendation systems, and natural language processing applications.",
-      responsibilities: [
-        "Built end-to-end machine learning pipelines for large-scale data processing and model training",
-        "Implemented recommendation engines that increased user engagement by 35% across client platforms",
-        "Developed NLP models for sentiment analysis, entity recognition, and text classification for multiple languages",
-        "Optimized model inference for production environments, reducing latency by 60%"
-      ],
-      technologies: ["Python", "TensorFlow", "PyTorch", "scikit-learn", "NLP", "SQL", "Spark", "Airflow", "GCP"]
-    },
-    {
-      position: "AI Research Intern",
-      company: "OpenAI Research",
+      position: "Data Science Writer",
+      company: "AI ML Universe",
       location: "Remote",
-      period: "Summer 2018",
-      description: "Contributed to research on reinforcement learning algorithms and their applications in robotic control and strategy games.",
+      period: "Apr 2025 – Jun 2025",
+      description: "Focused on researching, writing, and optimizing AI/ML content to boost visibility, engagement, and thought leadership.",
       responsibilities: [
-        "Implemented and evaluated novel reinforcement learning algorithms for complex environments",
-        "Conducted experiments to benchmark algorithm performance against existing state-of-the-art methods",
-        "Contributed to an open-source library of reinforcement learning tools and environments",
-        "Co-authored a research paper presented at a major AI conference"
+        "Authored 8+ SEO-optimized blogs on topics such as Tokenization, Reliable AI, RAIL, Forecasting, Hugging Face, and Multimodal AI, increasing organic traffic by ~30%",
+        "Simplified complex AI concepts into accessible, engaging content, improving read-through rate by 18% and average time-on-page by 20%",
+        "Applied keyword optimization and metadata strategies, achieving top-10 Google search rankings for multiple focus keywords",
+        "Enhanced engagement by blending technical depth with storytelling and humor, driving a 25% increase in blog shares/comments",
+        "Contributed to AIML Universe's thought leadership on ethical and applied AI, growing LinkedIn engagement by ~35%"
       ],
-      technologies: ["Python", "PyTorch", "OpenAI Gym", "Reinforcement Learning", "Robotics Simulation"]
+      technologies: ["SEO", "Content Strategy", "Technical Writing", "AI/ML Research", "Google Analytics", "Hugging Face"]
+    },
+    {
+      position: "Data Analytics and Power BI Intern",
+      company: "Edunet Foundation",
+      location: "Remote",
+      period: "Jul 2024 – Aug 2024",
+      description: "Worked on large-scale e-commerce datasets to deliver actionable insights and create interactive dashboards for business decision-making.",
+      responsibilities: [
+        "Analyzed 100,000+ e-commerce records, identifying 5+ KPIs to guide strategic decisions",
+        "Designed and deployed 3 interactive Power BI dashboards adopted by 10+ managers for sales, retention, and operational efficiency tracking",
+        "Improved reporting accuracy by 25%, ensuring 95%+ confidence in decision-making",
+        "Standardized dashboard reporting with a reusable template, reducing future reporting time by 40% (~8 analyst hours/month saved)",
+        "Presented insights to senior leadership, influencing inventory reduction (~12% less overstock) and improving sales forecast accuracy by 15%"
+      ],
+      technologies: ["Power BI", "SQL", "Excel", "Data Visualization", "Business Analytics"]
     }
   ];
 
