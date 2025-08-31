@@ -11,41 +11,26 @@ export const ThemeToggle = () => {
     setMounted(true);
   }, []);
 
-  // Force theme application on mount
-  useEffect(() => {
-    if (mounted && theme) {
-      const html = document.documentElement;
-      html.classList.remove('light', 'dark');
-      
-      if (theme === 'dark' || (theme === 'system' && resolvedTheme === 'dark')) {
-        html.classList.add('dark');
-      } else {
-        html.classList.add('light');
-      }
-      
-      console.log("Theme applied:", theme, "Resolved:", resolvedTheme, "HTML classes:", html.classList.toString());
-    }
-  }, [mounted, theme, resolvedTheme]);
+  if (!mounted) {
+    // Return a placeholder to prevent hydration mismatch
+    return (
+      <div className="fixed top-6 right-4 z-50">
+        <div className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl shadow-xl opacity-50" />
+      </div>
+    );
+  }
 
-  if (!mounted) return null;
+  const isDark = resolvedTheme === 'dark';
 
-  const isDark = theme === 'dark' || (theme === 'system' && resolvedTheme === 'dark');
-
-  const toggleTheme = () => {
-    const newTheme = isDark ? "light" : "dark";
-    console.log("Toggling theme from", theme, "to", newTheme);
-    setTheme(newTheme);
-    
-    // Manually apply theme class immediately
-    const html = document.documentElement;
-    html.classList.remove('light', 'dark');
-    html.classList.add(newTheme);
+  const handleToggle = () => {
+    console.log("Theme button clicked! Current theme:", theme, "Resolved:", resolvedTheme);
+    setTheme(isDark ? 'light' : 'dark');
   };
 
   return (
     <div className="fixed top-6 right-4 z-50">
       <motion.button
-        onClick={toggleTheme}
+        onClick={handleToggle}
         className="w-12 h-12 bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 dark:border-white/10 rounded-xl shadow-xl flex items-center justify-center hover:bg-white/20 dark:hover:bg-black/30 transition-all duration-300"
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.05 }}
