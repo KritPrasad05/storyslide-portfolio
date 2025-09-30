@@ -1,7 +1,7 @@
 
 import React from 'react';
 import SectionTransition from './SectionTransition';
-import { Brain, Cpu, Database, FileCode, FlaskConical, ChartLine } from 'lucide-react';
+import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
   <div className="bg-card border border-border/40 rounded-xl p-6 hover:shadow-md transition-all duration-300 hover:translate-y-[-2px]">
@@ -15,28 +15,43 @@ const About = () => {
   const skills = [
     {
       icon: Brain,
-      title: "Deep Learning",
-      description: "PyTorch, TensorFlow, transfer learning, CNNs"
+      title: "Machine Learning & AI",
+      description: "Supervised, Unsupervised, Time Series, Neural Networks (CNN, RNN), Gradient Boosting and Tree Based Algorithm"
+    },
+    {
+      icon: Sparkles,
+      title: "Next GenAI",
+      description: "RAG, GAN, A2A, MCP, Diffusion Models, Prompt Engineering, Fine Tuning, Transfer Learning"
     },
     {
       icon: ChartLine,
-      title: "Computer Vision",
-      description: "object detection, segmentation, YOLO/transfer pipelines"
+      title: "Data Science & Analytics",
+      description: "EDA, ETL Pipelines, Predictive Analytics, Feature Engineering, Statistical Modelling, Model Optimisation"
     },
     {
-      icon: FileCode,
-      title: "NLP & Generative AI",
-      description: "transformers, RAG, fine-tuning LLMs"
-    },
-    {
-      icon: Cpu,
-      title: "ML Ops & Cloud",
-      description: "Docker, AWS, model optimization & inference"
+      icon: Code2,
+      title: "Python Programming",
+      description: "Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, PyTorch, TensorFlow, FastAPI, Streamlit"
     },
     {
       icon: Database,
-      title: "Data Science",
-      description: "EDA, feature engineering, XGBoost, LightGBM"
+      title: "Databases",
+      description: "MySQL, Microsoft SQL Server, Oracle, Oracle Apex, mongoDB"
+    },
+    {
+      icon: PieChart,
+      title: "BI Tools",
+      description: "Microsoft Power BI, Tableau"
+    },
+    {
+      icon: Cloud,
+      title: "Cloud",
+      description: "AWS (Bedrock, SageMaker, S3, Lambda, Lex, PartyRock)"
+    },
+    {
+      icon: Monitor,
+      title: "Software Skill",
+      description: "Word, Excel, PowerPoint, Google Forms, Sheets"
     }
   ];
 
