@@ -125,7 +125,7 @@ export default {
 				},
 				'dash': {
 					'0%': { strokeDashoffset: '0' },
-					'100%': { strokeDashoffset: '800' }
+					'100%': { strokeDashoffset: '-1200' }
 				},
 			},
 			animation: {
@@ -142,7 +142,7 @@ export default {
 				'enter': 'fade-in 0.5s ease-out, scale-in 0.3s ease-out',
 				float: 'float 4s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 2s ease-in-out infinite',
-				'dash': 'dash 3s linear infinite',
+				'dash': 'dash 6s linear infinite',
 			},
 			backdropBlur: {
 				xs: '2px',

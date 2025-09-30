@@ -6,33 +6,42 @@ import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor }
 const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
   <div className="group relative rounded-xl p-6 h-[220px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
     {/* Base border */}
-    <div className="absolute inset-0 rounded-xl border-2 border-primary/20"></div>
+    <div className="absolute inset-0 rounded-xl border border-primary/20"></div>
     
-    {/* Animated traveling light on border */}
-    <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ borderRadius: '0.75rem' }}>
+    {/* Animated traveling light on border with glow */}
+    <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" style={{ borderRadius: '0.75rem' }}>
       <defs>
         <linearGradient id={`light-${title.replace(/\s/g, '')}`} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="transparent" />
-          <stop offset="40%" stopColor="transparent" />
-          <stop offset="50%" stopColor="hsl(var(--primary))" className="dark:stop-color-white" stopOpacity="0.3" />
-          <stop offset="55%" stopColor="currentColor" className="text-gray-600 dark:text-white" stopOpacity="0.95" />
-          <stop offset="60%" stopColor="hsl(var(--primary))" className="dark:stop-color-white" stopOpacity="0.3" />
+          <stop offset="35%" stopColor="transparent" />
+          <stop offset="45%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
+          <stop offset="50%" stopColor="currentColor" className="text-gray-700 dark:text-white" stopOpacity="1" />
+          <stop offset="55%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
+          <stop offset="65%" stopColor="transparent" />
           <stop offset="100%" stopColor="transparent" />
         </linearGradient>
+        <filter id={`glow-${title.replace(/\s/g, '')}`} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
       </defs>
       <rect 
-        x="1" 
-        y="1" 
-        width="calc(100% - 2px)" 
-        height="calc(100% - 2px)" 
-        rx="11" 
-        ry="11" 
+        x="2" 
+        y="2" 
+        width="calc(100% - 4px)" 
+        height="calc(100% - 4px)" 
+        rx="10" 
+        ry="10" 
         fill="none" 
         stroke={`url(#light-${title.replace(/\s/g, '')})`}
-        strokeWidth="2"
-        strokeDasharray="400"
+        strokeWidth="4"
+        strokeDasharray="600"
         strokeDashoffset="0"
-        className="animate-[dash_3s_linear_infinite]"
+        filter={`url(#glow-${title.replace(/\s/g, '')})`}
+        className="animate-[dash_6s_linear_infinite]"
       />
     </svg>
     
