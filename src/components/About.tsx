@@ -4,10 +4,20 @@ import SectionTransition from './SectionTransition';
 import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
-  <div className="bg-card border border-border/40 rounded-xl p-6 hover:shadow-md transition-all duration-300 hover:translate-y-[-2px]">
-    <Icon className="h-10 w-10 text-primary mb-4" />
-    <h3 className="text-lg font-semibold mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm">{description}</p>
+  <div className="group relative bg-gradient-to-br from-card to-card/50 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+    {/* Animated gradient border */}
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-75 blur-sm animate-[spin_3s_linear_infinite]" style={{ padding: '2px' }}></div>
+    <div className="absolute inset-[2px] rounded-xl bg-card/95 backdrop-blur-sm"></div>
+    
+    {/* Content */}
+    <div className="relative z-10">
+      <Icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-muted-foreground text-sm">{description}</p>
+    </div>
+    
+    {/* 3D shadow effect */}
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transform: 'translateZ(-10px)' }}></div>
   </div>
 );
 
@@ -102,7 +112,7 @@ const About = () => {
           </h3>
         </SectionTransition>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((skill, index) => (
             <SectionTransition key={skill.title} delay={500 + index * 100}>
               <SkillCard
