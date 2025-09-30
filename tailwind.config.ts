@@ -123,6 +123,10 @@ export default {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.7' }
 				},
+				'dash': {
+					'0%': { strokeDashoffset: '0' },
+					'100%': { strokeDashoffset: '800' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -138,6 +142,7 @@ export default {
 				'enter': 'fade-in 0.5s ease-out, scale-in 0.3s ease-out',
 				float: 'float 4s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 2s ease-in-out infinite',
+				'dash': 'dash 3s linear infinite',
 			},
 			backdropBlur: {
 				xs: '2px',

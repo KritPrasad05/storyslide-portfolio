@@ -4,36 +4,46 @@ import SectionTransition from './SectionTransition';
 import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
-  <div className="group relative rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
-    {/* Animated border with traveling light */}
-    <div className="absolute inset-0 rounded-xl overflow-hidden">
-      <div 
-        className="absolute inset-0 rounded-xl animate-[spin_3s_linear_infinite] light-border"
-        style={{
-          padding: '2px',
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude'
-        }}
-      ></div>
-    </div>
-    <style>{`
-      .light-border {
-        background: conic-gradient(from 0deg, transparent 0%, transparent 80%, hsl(var(--primary)) 90%, rgba(100, 100, 100, 0.5) 95%, hsl(var(--primary)) 100%);
-      }
-      .dark .light-border {
-        background: conic-gradient(from 0deg, transparent 0%, transparent 80%, hsl(var(--primary)) 90%, rgba(255, 255, 255, 0.95) 95%, hsl(var(--primary)) 100%);
-      }
-    `}</style>
+  <div className="group relative rounded-xl p-6 h-[220px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+    {/* Base border */}
+    <div className="absolute inset-0 rounded-xl border-2 border-primary/20"></div>
+    
+    {/* Animated traveling light on border */}
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ borderRadius: '0.75rem' }}>
+      <defs>
+        <linearGradient id={`light-${title.replace(/\s/g, '')}`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="transparent" />
+          <stop offset="40%" stopColor="transparent" />
+          <stop offset="50%" stopColor="hsl(var(--primary))" className="dark:stop-color-white" stopOpacity="0.3" />
+          <stop offset="55%" stopColor="currentColor" className="text-gray-600 dark:text-white" stopOpacity="0.95" />
+          <stop offset="60%" stopColor="hsl(var(--primary))" className="dark:stop-color-white" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="transparent" />
+        </linearGradient>
+      </defs>
+      <rect 
+        x="1" 
+        y="1" 
+        width="calc(100% - 2px)" 
+        height="calc(100% - 2px)" 
+        rx="11" 
+        ry="11" 
+        fill="none" 
+        stroke={`url(#light-${title.replace(/\s/g, '')})`}
+        strokeWidth="2"
+        strokeDasharray="400"
+        strokeDashoffset="0"
+        className="animate-[dash_3s_linear_infinite]"
+      />
+    </svg>
     
     {/* Card background */}
     <div className="absolute inset-[2px] rounded-xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm"></div>
     
     {/* Content */}
-    <div className="relative z-10">
-      <Icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground text-sm">{description}</p>
+    <div className="relative z-10 flex flex-col h-full">
+      <Icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+      <h3 className="text-lg font-semibold mb-2 flex-shrink-0">{title}</h3>
+      <p className="text-muted-foreground text-sm flex-grow overflow-hidden">{description}</p>
     </div>
     
     {/* 3D shadow effect */}
