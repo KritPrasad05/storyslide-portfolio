@@ -4,10 +4,30 @@ import SectionTransition from './SectionTransition';
 import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor } from 'lucide-react';
 
 const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
-  <div className="group relative bg-gradient-to-br from-card to-card/50 rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
-    {/* Animated gradient border */}
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-75 blur-sm animate-[spin_3s_linear_infinite]" style={{ padding: '2px' }}></div>
-    <div className="absolute inset-[2px] rounded-xl bg-card/95 backdrop-blur-sm"></div>
+  <div className="group relative rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+    {/* Animated border with traveling light */}
+    <div className="absolute inset-0 rounded-xl overflow-hidden">
+      <div 
+        className="absolute inset-0 rounded-xl animate-[spin_3s_linear_infinite] light-border"
+        style={{
+          padding: '2px',
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude'
+        }}
+      ></div>
+    </div>
+    <style>{`
+      .light-border {
+        background: conic-gradient(from 0deg, transparent 0%, transparent 80%, hsl(var(--primary)) 90%, rgba(100, 100, 100, 0.5) 95%, hsl(var(--primary)) 100%);
+      }
+      .dark .light-border {
+        background: conic-gradient(from 0deg, transparent 0%, transparent 80%, hsl(var(--primary)) 90%, rgba(255, 255, 255, 0.95) 95%, hsl(var(--primary)) 100%);
+      }
+    `}</style>
+    
+    {/* Card background */}
+    <div className="absolute inset-[2px] rounded-xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm"></div>
     
     {/* Content */}
     <div className="relative z-10">
@@ -17,7 +37,7 @@ const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType
     </div>
     
     {/* 3D shadow effect */}
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transform: 'translateZ(-10px)' }}></div>
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ transform: 'translateZ(-10px)' }}></div>
   </div>
 );
 
