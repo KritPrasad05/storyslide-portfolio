@@ -3,62 +3,67 @@ import React from 'react';
 import SectionTransition from './SectionTransition';
 import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor } from 'lucide-react';
 
-const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => (
-  <div className="group relative rounded-xl p-6 h-[220px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
-    {/* Base border */}
-    <div className="absolute inset-0 rounded-xl border border-primary/20"></div>
-    
-    {/* Animated traveling light on border with glow */}
-    <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" style={{ borderRadius: '0.75rem' }}>
-      <defs>
-        <linearGradient id={`light-${title.replace(/\s/g, '')}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="transparent" />
-          <stop offset="35%" stopColor="transparent" />
-          <stop offset="45%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
-          <stop offset="50%" stopColor="currentColor" className="text-gray-700 dark:text-white" stopOpacity="1" />
-          <stop offset="55%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
-          <stop offset="65%" stopColor="transparent" />
-          <stop offset="100%" stopColor="transparent" />
-        </linearGradient>
-        <filter id={`glow-${title.replace(/\s/g, '')}`} x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-      <rect 
-        x="2" 
-        y="2" 
-        width="calc(100% - 4px)" 
-        height="calc(100% - 4px)" 
-        rx="10" 
-        ry="10" 
-        fill="none" 
-        stroke={`url(#light-${title.replace(/\s/g, '')})`}
-        strokeWidth="4"
-        strokeDasharray="600"
-        strokeDashoffset="0"
-        filter={`url(#glow-${title.replace(/\s/g, '')})`}
-        className="animate-[dash_6s_linear_infinite]"
-      />
-    </svg>
-    
-    {/* Card background */}
-    <div className="absolute inset-[2px] rounded-xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm"></div>
-    
-    {/* Content */}
-    <div className="relative z-10 flex flex-col h-full">
-      <Icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
-      <h3 className="text-lg font-semibold mb-2 flex-shrink-0">{title}</h3>
-      <p className="text-muted-foreground text-sm flex-grow overflow-hidden">{description}</p>
+const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => {
+  const cardId = title.replace(/\s/g, '-').toLowerCase();
+  
+  return (
+    <div className="group relative rounded-xl p-6 h-[280px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+      {/* Base border */}
+      <div className="absolute inset-0 rounded-xl border border-primary/20"></div>
+      
+      {/* Animated traveling light on border with glow */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" style={{ borderRadius: '0.75rem' }}>
+        <defs>
+          <linearGradient id={`light-gradient-${cardId}`}>
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="30%" stopColor="transparent" />
+            <stop offset="45%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="currentColor" className="text-gray-700 dark:text-white" stopOpacity="1" />
+            <stop offset="55%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+            <stop offset="70%" stopColor="transparent" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+          <filter id={`glow-${cardId}`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <rect 
+          x="2" 
+          y="2" 
+          width="calc(100% - 4px)" 
+          height="calc(100% - 4px)" 
+          rx="10" 
+          ry="10" 
+          fill="none" 
+          stroke={`url(#light-gradient-${cardId})`}
+          strokeWidth="4"
+          strokeLinecap="round"
+          pathLength="100"
+          strokeDasharray="15 85"
+          filter={`url(#glow-${cardId})`}
+          className="animate-[border-spin_6s_linear_infinite]"
+        />
+      </svg>
+      
+      {/* Card background */}
+      <div className="absolute inset-[2px] rounded-xl bg-gradient-to-br from-card to-card/50 backdrop-blur-sm"></div>
+      
+      {/* Content */}
+      <div className="relative z-10 flex flex-col h-full">
+        <Icon className="h-10 w-10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
+        <h3 className="text-lg font-semibold mb-2 flex-shrink-0">{title}</h3>
+        <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+      </div>
+      
+      {/* 3D shadow effect */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ transform: 'translateZ(-10px)' }}></div>
     </div>
-    
-    {/* 3D shadow effect */}
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ transform: 'translateZ(-10px)' }}></div>
-  </div>
-);
+  );
+};
 
 const About = () => {
   const skills = [

@@ -127,6 +127,10 @@ export default {
 					'0%': { strokeDashoffset: '0' },
 					'100%': { strokeDashoffset: '-1200' }
 				},
+				'border-spin': {
+					'0%': { strokeDashoffset: '0' },
+					'100%': { strokeDashoffset: '100' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -143,6 +147,7 @@ export default {
 				float: 'float 4s ease-in-out infinite',
 				'pulse-slow': 'pulse-slow 2s ease-in-out infinite',
 				'dash': 'dash 6s linear infinite',
+				'border-spin': 'border-spin 6s linear infinite',
 			},
 			backdropBlur: {
 				xs: '2px',
