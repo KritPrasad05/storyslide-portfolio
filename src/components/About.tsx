@@ -1,45 +1,30 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import SectionTransition from './SectionTransition';
 import { Brain, Sparkles, ChartLine, Code2, Database, PieChart, Cloud, Monitor } from 'lucide-react';
 
-const SkillCard = ({ icon: Icon, title, description, index }: { icon: React.ElementType, title: string, description: string, index: number }) => {
+const SkillCard = ({ icon: Icon, title, description }: { icon: React.ElementType, title: string, description: string }) => {
   const cardId = title.replace(/\s/g, '-').toLowerCase();
-  const svgRef = useRef<SVGRectElement>(null);
-  
-  useEffect(() => {
-    const rect = svgRef.current;
-    if (!rect) return;
-
-    // Get total perimeter length
-    const length = rect.getTotalLength();
-    
-    // Randomize duration (8-14s range)
-    const duration = 8 + Math.random() * 6;
-    
-    // Stagger delays based on index + small random offset
-    const delay = (index * 1.5) + (Math.random() * 2);
-    
-    // Randomize initial offset so cards don't start at same position
-    const initialOffset = Math.random() * length;
-    
-    // Set CSS variables on the rect element
-    rect.style.setProperty('--dash-length', `${length}`);
-    rect.style.setProperty('--border-duration', `${duration}s`);
-    rect.style.setProperty('--border-delay', `${delay}s`);
-    rect.style.setProperty('--initial-offset', `${initialOffset}`);
-  }, [index]);
   
   return (
-    <div className="skill-card group relative rounded-xl p-6 h-[280px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+    <div className="group relative rounded-xl p-6 h-[280px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
       {/* Base border */}
       <div className="absolute inset-0 rounded-xl border border-primary/20"></div>
       
       {/* Animated traveling light on border with glow */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" style={{ borderRadius: '0.75rem' }}>
         <defs>
-          <filter id={`glow-${cardId}`} x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+          <linearGradient id={`light-gradient-${cardId}`}>
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="30%" stopColor="transparent" />
+            <stop offset="45%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="currentColor" className="text-gray-700 dark:text-white" stopOpacity="1" />
+            <stop offset="55%" stopColor="hsl(var(--primary))" stopOpacity="0.5" />
+            <stop offset="70%" stopColor="transparent" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+          <filter id={`glow-${cardId}`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -47,19 +32,20 @@ const SkillCard = ({ icon: Icon, title, description, index }: { icon: React.Elem
           </filter>
         </defs>
         <rect 
-          ref={svgRef}
-          x="3" 
-          y="3" 
-          width="calc(100% - 6px)" 
-          height="calc(100% - 6px)" 
+          x="2" 
+          y="2" 
+          width="calc(100% - 4px)" 
+          height="calc(100% - 4px)" 
           rx="10" 
           ry="10" 
           fill="none" 
+          stroke={`url(#light-gradient-${cardId})`}
           strokeWidth="4"
           strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
+          pathLength="100"
+          strokeDasharray="15 85"
           filter={`url(#glow-${cardId})`}
-          className="border-light-animated"
+          className="animate-[border-spin_6s_linear_infinite]"
         />
       </svg>
       
@@ -177,7 +163,6 @@ const About = () => {
                 icon={skill.icon}
                 title={skill.title}
                 description={skill.description}
-                index={index}
               />
             </SectionTransition>
           ))}
