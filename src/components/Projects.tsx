@@ -28,27 +28,29 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    window.open(projectUrl, '_blank', 'noopener,noreferrer');
+  };
+  
   return (
-    <a 
-      href={projectUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`group relative overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 block cursor-pointer hover:border-primary/40 ${
+    <div 
+      onClick={handleClick}
+      className={`group relative overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 cursor-pointer hover:border-primary/40 ${
         featured ? 'md:col-span-2' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-video overflow-hidden">
+      <div className="aspect-video overflow-hidden pointer-events-none">
         <div 
           className="h-full w-full bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105"
           style={{ backgroundImage: `url(${image})` }}
         />
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       
-      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
         <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
           {title}
           <ExternalLink className="h-4 w-4 text-primary" />
@@ -69,10 +71,10 @@ const ProjectCard = ({
       </div>
       
       {/* Title overlay when not hovered */}
-      <div className={`absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent ${isHovered ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}>
+      <div className={`absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent ${isHovered ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 pointer-events-none`}>
         <h3 className="text-xl font-semibold">{title}</h3>
       </div>
-    </a>
+    </div>
   );
 };
 
