@@ -249,3 +249,47 @@
 .nav-delay-6 { animation-delay: 0.6s; }
 .nav-delay-7 { animation-delay: 0.7s; }
 .nav-delay-8 { animation-delay: 0.8s; }
+
+/* Continuous border light animation for skill cards */
+@layer components {
+  .border-light-animated {
+    /* Default values, overridden by JS per card */
+    --dash-length: 1000;
+    --border-duration: 10s;
+    --border-delay: 0s;
+    --initial-offset: 0;
+    
+    /* Short visible segment + rest transparent */
+    stroke-dasharray: 80 var(--dash-length);
+    stroke-dashoffset: var(--initial-offset);
+    animation: border-travel var(--border-duration) linear var(--border-delay) infinite;
+  }
+
+  /* Theme-aware stroke colors */
+  .dark .border-light-animated {
+    stroke: rgba(255, 255, 255, 0.95);
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+  }
+
+  .light .border-light-animated,
+  body:not(.dark) .border-light-animated {
+    stroke: rgba(6, 10, 16, 0.9);
+    filter: drop-shadow(0 0 8px rgba(6, 10, 16, 0.3));
+  }
+
+  /* Accessibility: Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .border-light-animated {
+      animation: none;
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      opacity: 0.5;
+    }
+  }
+}
+
+@keyframes border-travel {
+  to {
+    stroke-dashoffset: calc(var(--initial-offset) - var(--dash-length));
+  }
+}
