@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SectionTransition from './SectionTransition';
 import { ExternalLink } from 'lucide-react';
 import projectAmazonLex from '@/assets/project-amazon-lex.jpg';
@@ -26,34 +26,32 @@ const ProjectCard = ({
   projectUrl,
   featured = false
 }: ProjectCardProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    window.open(projectUrl, '_blank', 'noopener,noreferrer');
-  };
-  
   return (
-    <div 
-      onClick={handleClick}
-      className={`group relative overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 cursor-pointer hover:border-primary/40 ${
+    <a 
+      href={projectUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`View project: ${title}`}
+      className={`group relative block overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 hover:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background ${
         featured ? 'md:col-span-2' : ''
       }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-video overflow-hidden pointer-events-none">
+      {/* Project Image */}
+      <div className="aspect-video overflow-hidden">
         <div 
-          className="h-full w-full bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105"
+          className="h-full w-full bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105 group-focus:scale-105"
           style={{ backgroundImage: `url(${image})` }}
+          aria-hidden="true"
         />
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      {/* Hover/Focus Overlay with Details */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300" aria-hidden="true" />
       
-      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100 transition-all duration-300">
         <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
           {title}
-          <ExternalLink className="h-4 w-4 text-primary" />
+          <ExternalLink className="h-4 w-4 text-primary" aria-hidden="true" />
         </h3>
         <p className="text-muted-foreground text-sm mb-4">{description}</p>
         
@@ -75,11 +73,11 @@ const ProjectCard = ({
         </div>
       </div>
       
-      {/* Title overlay when not hovered */}
-      <div className={`absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent ${isHovered ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300 pointer-events-none`}>
+      {/* Title overlay when not hovered/focused */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent opacity-100 group-hover:opacity-0 group-focus:opacity-0 transition-opacity duration-300">
         <h3 className="text-xl font-semibold">{title}</h3>
       </div>
-    </div>
+    </a>
   );
 };
 
