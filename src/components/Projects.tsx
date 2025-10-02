@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import SectionTransition from './SectionTransition';
 import { ExternalLink } from 'lucide-react';
 import projectAmazonLex from '@/assets/project-amazon-lex.jpg';
@@ -15,6 +15,8 @@ interface ProjectCardProps {
   image: string;
   tags: string[];
   projectUrl: string;
+  date: string;
+  projectId: string;
   featured?: boolean;
 }
 
@@ -24,114 +26,181 @@ const ProjectCard = ({
   image, 
   tags, 
   projectUrl,
+  date,
+  projectId,
   featured = false
 }: ProjectCardProps) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleFlip();
+    }
+  };
+
   return (
-    <a 
-      href={projectUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`View project: ${title}`}
-      className={`group relative block overflow-hidden rounded-xl border border-border/40 bg-card/50 transition-all duration-300 hover:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background ${
-        featured ? 'md:col-span-2' : ''
-      }`}
+    <div
+      className={`flip-card-container ${featured ? 'md:col-span-2' : ''}`}
+      style={{ perspective: '1000px' }}
     >
-      {/* Project Image */}
-      <div className="aspect-video overflow-hidden">
-        <div 
-          className="h-full w-full bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105 group-focus:scale-105"
-          style={{ backgroundImage: `url(${image})` }}
-          aria-hidden="true"
-        />
-      </div>
-      
-      {/* Hover/Focus Overlay with Details */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-      
-      <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100 transition-all duration-300">
-        <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-          {title}
-          <ExternalLink className="h-4 w-4 text-primary" aria-hidden="true" />
-        </h3>
-        <p className="text-muted-foreground text-sm mb-4">{description}</p>
-        
-        <div className="flex flex-wrap gap-2 mb-3">
-          {tags.map((tag, index) => (
-            <span key={index} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        <div className="space-y-1">
-          <div className="text-xs text-primary font-medium truncate">
-            {projectUrl}
+      <div
+        className={`flip-card ${isFlipped ? 'flipped' : ''}`}
+        tabIndex={0}
+        role="button"
+        aria-label={`Flip: ${title} — view details`}
+        aria-pressed={isFlipped}
+        onKeyDown={handleKeyDown}
+        onClick={handleFlip}
+        data-project-id={projectId}
+        style={{
+          transformStyle: 'preserve-3d',
+          transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          willChange: 'transform'
+        }}
+      >
+        {/* Front of card */}
+        <div
+          className="flip-card-face flip-card-front"
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            position: 'absolute',
+            width: '100%',
+            height: '100%'
+          }}
+        >
+          <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg hover:border-primary/40 focus-within:border-primary/40 transition-all duration-300">
+            <div className="aspect-video overflow-hidden">
+              <div 
+                className="h-full w-full bg-cover bg-center transition-transform duration-700"
+                style={{ backgroundImage: `url(${image})` }}
+                aria-hidden="true"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/95 via-background/80 to-transparent">
+              <h3 className="text-xl font-semibold mb-1">{title}</h3>
+              <p className="text-xs text-muted-foreground">{date}</p>
+            </div>
           </div>
-          <div className="text-xs text-primary/80 font-medium">
-            Click to view project →
+        </div>
+
+        {/* Back of card */}
+        <div
+          className="flip-card-face flip-card-back"
+          style={{
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(180deg)',
+            position: 'absolute',
+            width: '100%',
+            height: '100%'
+          }}
+        >
+          <div className="h-full overflow-hidden rounded-xl border border-border/40 bg-card shadow-lg p-6 flex flex-col justify-between">
+            <div>
+              <h3 className="text-lg font-semibold mb-3">{title}</h3>
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                {description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {tags.map((tag, index) => (
+                  <span key={index} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground mb-4">{date}</p>
+            </div>
+            <a
+              href={projectUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-repo-url={projectUrl}
+              data-ga="project-click"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
+            >
+              see the repo
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>
-      
-      {/* Title overlay when not hovered/focused */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent opacity-100 group-hover:opacity-0 group-focus:opacity-0 transition-opacity duration-300">
-        <h3 className="text-xl font-semibold">{title}</h3>
-      </div>
-    </a>
+    </div>
   );
 };
 
 const Projects = () => {
   const projects = [
     {
-      title: "Amazon Lex Chatbot with AWS Lambda",
-      description: "NextWork Lambda - Built a serverless AI chatbot using Amazon Lex and AWS Lambda for cloud-based conversation handling and automation.",
+      title: "Amazon Lex Chatbot with AWS Lambda — NextWork",
+      description: "Built a serverless banking chatbot using Amazon Lex and AWS Lambda to automate balance queries, eliminating manual lookups and improving response speed by 30%. Integrated intent handlers and code hooks for real-time responses.",
       image: projectAmazonLex,
-      tags: ["AWS Lambda", "Amazon Lex", "Serverless", "AI"],
+      tags: ["AWS Lex", "AWS Lambda", "CloudFormation", "Serverless"],
       projectUrl: "https://learn.nextwork.org/vibrant_cyan_adorable_stingray/portfolio",
+      date: "Aug 2025",
+      projectId: "amazon-lex-chatbot",
       featured: true
     },
     {
-      title: "Deep Learning (Computer Vision)",
-      description: "WorldQuant Applied AI Lab - Implemented advanced computer vision pipelines for object detection, classification, and segmentation tasks.",
+      title: "Deep Learning (Computer Vision) — WorldQuant Applied AI Lab",
+      description: "Built 6 computer-vision models (classification, detection, segmentation) on real-world datasets, achieving 90–92% accuracy using transfer learning, augmentation, and advanced CNN tuning.",
       image: projectComputerVision,
-      tags: ["PyTorch", "Computer Vision", "Deep Learning", "AI"],
-      projectUrl: "https://github.com/KritPrasad05/Applied-AI_Lab-Deep_Learning_for_Computer_Vision_WorldQuant_University"
+      tags: ["PyTorch", "OpenCV", "YOLO", "Transfer Learning", "GANs", "Streamlit"],
+      projectUrl: "https://github.com/KritPrasad05/Applied-AI_Lab-Deep_Learning_for_Computer_Vision_WorldQuant_University",
+      date: "Jan 2025 – Jul 2025",
+      projectId: "computer-vision-worldquant"
     },
     {
-      title: "System Efficiency Forecasting (ML)",
-      description: "Zelestra x AWS ML Challenge - Developed predictive models to forecast system efficiency trends using machine learning algorithms.",
+      title: "System Efficiency Forecasting (ML) — Zelestra x AWS ML Challenge",
+      description: "Preprocessed 20K+ entries and engineered/validated the dataset by cleaning 5+ critical features and applying robust outlier handling. Trained 6 regression models; best score: 89.21 (Gradient Boosting Regressor).",
       image: projectEfficiencyForecast,
-      tags: ["Machine Learning", "AWS", "Forecasting", "Python"],
-      projectUrl: "https://colab.research.google.com/drive/1TslB_Qr0ioABQpx61aB01VcOzpiMqRCy?usp=sharing"
+      tags: ["XGBoost", "GradientBoosting", "Scikit-learn", "EDA"],
+      projectUrl: "https://colab.research.google.com/drive/1TslB_Qr0ioABQpx61aB01VcOzpiMqRCy?usp=sharing",
+      date: "Jun 2025",
+      projectId: "efficiency-forecasting"
     },
     {
-      title: "AI-Based Trade Ranking System",
-      description: "Primetrade.ai FinTech Project - Built an intelligent ranking system for traders using AI-driven algorithms and financial metrics.",
+      title: "AI-Based Trade Ranking System (FinTech) — Primetrade.ai",
+      description: "Ranked 150+ traders using ML models trained on 20,000+ trade records (R² = 0.99). Improved ranking fairness by 20% using ROI filters and Z-score outlier control.",
       image: projectTradeRanking,
-      tags: ["AI", "FinTech", "XGBoost", "Python"],
-      projectUrl: "https://github.com/KritPrasad05/Primetrade.ai._Internship_Task"
+      tags: ["Python", "Pandas", "XGBoost", "LightGBM", "Scikit-Learn"],
+      projectUrl: "https://github.com/KritPrasad05/Primetrade.ai._Internship_Task",
+      date: "Feb 2025",
+      projectId: "trade-ranking-fintech"
     },
     {
-      title: "Temperature Prediction Model",
-      description: "Time Series Hackathon - Created a predictive model for temperature forecasting using time series analysis and ML techniques.",
+      title: "Temperature Prediction Model (Time Series) — Hackathon",
+      description: "Predicted temperature with RMSE = 2.5°C using lag/cyclic/rolling features; boosted test performance to 96.91% via XGBoost tuning and 10-fold validation.",
       image: projectTemperature,
-      tags: ["Time Series", "ML", "Forecasting", "Python"],
-      projectUrl: "https://github.com/KritPrasad05/Time_Series_Data-Future_Weather_Prediction-"
+      tags: ["Python", "XGBoost", "Time-Series Features", "Cross-Validation"],
+      projectUrl: "https://github.com/KritPrasad05/Time_Series_Data-Future_Weather_Prediction-",
+      date: "Oct 2024",
+      projectId: "temperature-prediction"
     },
     {
-      title: "Speech-to-Text Transformer (NLP)",
-      description: "NULLCLASS TASK - Implemented a transformer-based speech recognition system converting audio to text using NLP techniques.",
+      title: "Speech-to-Text Transformer (NLP) — NULLCLASS Task",
+      description: "Fine-tuned STT transformer models on custom audio, reducing WER by 18% and converting 50+ minutes of domain audio with a 2-layer transformer pipeline.",
       image: projectSpeechToText,
-      tags: ["NLP", "Transformers", "Speech Recognition", "AI"],
-      projectUrl: "https://github.com/KritPrasad05/NULLCLASS_INTERNSHIP-TASK3-KritPrasad"
+      tags: ["Hugging Face", "TensorFlow", "Transformers", "Streamlit"],
+      projectUrl: "https://github.com/KritPrasad05/NULLCLASS_INTERNSHIP-TASK3-KritPrasad",
+      date: "Jun 2024 – Jul 2024",
+      projectId: "speech-to-text-nlp"
     },
     {
-      title: "Customer Churn Prediction",
-      description: "Coursera Project Network - Developed a data science model to predict customer churn using advanced analytics and ML algorithms.",
+      title: "Customer Churn Prediction (Data Science) — Coursera Project Network",
+      description: "Modeled churn on 5K+ telecom records; improved recall by 15% using SMOTE balancing and tuned ML models via GridSearchCV.",
       image: projectChurnPrediction,
-      tags: ["Data Science", "ML", "Analytics", "Python"],
-      projectUrl: "https://github.com/KritPrasad05/Churn_Prediction-Coursera_Project_Network"
+      tags: ["Scikit-Learn", "Pandas", "SMOTE", "ROC-AUC"],
+      projectUrl: "https://github.com/KritPrasad05/Churn_Prediction-Coursera_Project_Network",
+      date: "May 2024 – Jun 2024",
+      projectId: "churn-prediction"
     }
   ];
 
@@ -160,11 +229,63 @@ const Projects = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <SectionTransition key={project.title} delay={300 + index * 100}>
+            <SectionTransition key={project.projectId} delay={300 + index * 100}>
               <ProjectCard {...project} />
             </SectionTransition>
           ))}
         </div>
+        
+        {/* Accessibility & Implementation Notes */}
+        <style>{`
+          .flip-card-container {
+            min-height: 320px;
+            position: relative;
+          }
+          
+          .flip-card {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+          }
+          
+          .flip-card:focus {
+            outline: 2px solid hsl(var(--primary));
+            outline-offset: 4px;
+            border-radius: 0.75rem;
+          }
+          
+          .flip-card:focus-visible {
+            outline: 2px solid hsl(var(--primary));
+            outline-offset: 4px;
+          }
+          
+          /* Reduced motion support */
+          @media (prefers-reduced-motion: reduce) {
+            .flip-card {
+              transition: opacity 0.3s ease !important;
+            }
+            .flip-card.flipped .flip-card-front {
+              opacity: 0;
+            }
+            .flip-card.flipped .flip-card-back {
+              opacity: 1;
+              transform: rotateY(0deg) !important;
+            }
+            .flip-card:not(.flipped) .flip-card-back {
+              opacity: 0;
+            }
+          }
+          
+          /* Mobile tap handling */
+          @media (max-width: 768px) {
+            .flip-card {
+              -webkit-tap-highlight-color: transparent;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
