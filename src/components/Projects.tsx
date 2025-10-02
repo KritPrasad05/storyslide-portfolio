@@ -65,8 +65,13 @@ const ProjectCard = ({
           ))}
         </div>
         
-        <div className="text-xs text-primary/80 font-medium">
-          Click to view project →
+        <div className="space-y-1">
+          <div className="text-xs text-primary font-medium truncate">
+            {projectUrl}
+          </div>
+          <div className="text-xs text-primary/80 font-medium">
+            Click to view project →
+          </div>
         </div>
       </div>
       
