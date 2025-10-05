@@ -76,7 +76,7 @@ const ProjectCard = ({
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
+            transform: 'rotateX(180deg)',
             position: 'absolute',
             width: '100%',
             height: '100%'
