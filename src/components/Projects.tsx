@@ -32,29 +32,14 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <div
-      className={`flip-card-container ${featured ? 'md:col-span-2' : ''} ${featured ? 'featured-flip' : ''}`}
-      style={{ perspective: '1000px' }}
+      className={`flip-card-container ${featured ? 'md:col-span-2 featured-flip' : ''}`}
     >
       <div
         className="flip-card"
         data-project-id={projectId}
-        style={{
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-          willChange: 'transform'
-        }}
       >
         {/* Front of card */}
-        <div
-          className="flip-card-face flip-card-front"
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            position: 'absolute',
-            width: '100%',
-            height: '100%'
-          }}
-        >
+        <div className="flip-card-face flip-card-front">
           <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg hover:border-primary/40 focus-within:border-primary/40 transition-all duration-300">
             <div className="aspect-video overflow-hidden">
               <div 
@@ -71,17 +56,7 @@ const ProjectCard = ({
         </div>
 
         {/* Back of card */}
-        <div
-          className="flip-card-face flip-card-back"
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateX(180deg)',
-            position: 'absolute',
-            width: '100%',
-            height: '100%'
-          }}
-        >
+        <div className="flip-card-face flip-card-back">
           <div className="h-full overflow-hidden rounded-xl border border-border/40 bg-card shadow-lg p-6 flex flex-col justify-between">
             <div>
               <h3 className="text-lg font-semibold mb-3">{title}</h3>
@@ -215,11 +190,12 @@ const Projects = () => {
           ))}
         </div>
         
-        {/* Accessibility & Implementation Notes */}
+        {/* Flip Card Styles */}
         <style>{`
           .flip-card-container {
             min-height: 320px;
             position: relative;
+            perspective: 1000px;
           }
           
           .flip-card {
@@ -227,6 +203,22 @@ const Projects = () => {
             height: 100%;
             min-height: 320px;
             position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          
+          .flip-card-face {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+          }
+          
+          .flip-card-back {
+            transform: rotateX(180deg);
           }
           
           /* Featured card flip on hover - vertical rotation */
@@ -240,9 +232,17 @@ const Projects = () => {
           
           /* Reduced motion support */
           @media (prefers-reduced-motion: reduce) {
+            .featured-flip .flip-card {
+              transition: opacity 0.3s ease;
+            }
             .featured-flip:hover .flip-card {
-              transform: rotateX(0deg);
-              opacity: 0.8;
+              transform: none;
+            }
+            .featured-flip:hover .flip-card-front {
+              opacity: 0;
+            }
+            .featured-flip:hover .flip-card-back {
+              opacity: 1;
             }
           }
         `}</style>
