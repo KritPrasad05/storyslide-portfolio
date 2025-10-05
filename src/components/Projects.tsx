@@ -32,14 +32,13 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <div
-      className={`flip-card-container ${featured ? 'md:col-span-2 featured-flip' : ''}`}
+      className={`project-card ${featured ? 'featured md:col-span-2' : ''}`}
+      aria-label={featured ? `Featured project: ${title}` : title}
+      data-project-id={projectId}
     >
-      <div
-        className="flip-card"
-        data-project-id={projectId}
-      >
+      <div className="card-inner">
         {/* Front of card */}
-        <div className="flip-card-face flip-card-front">
+        <div className="card-front">
           <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg hover:border-primary/40 focus-within:border-primary/40 transition-all duration-300">
             <div className="aspect-video overflow-hidden">
               <div 
@@ -56,7 +55,7 @@ const ProjectCard = ({
         </div>
 
         {/* Back of card */}
-        <div className="flip-card-face flip-card-back">
+        <div className="card-back">
           <div className="h-full overflow-hidden rounded-xl border border-border/40 bg-card shadow-lg p-6 flex flex-col justify-between">
             <div>
               <h3 className="text-lg font-semibold mb-3">{title}</h3>
@@ -190,58 +189,79 @@ const Projects = () => {
           ))}
         </div>
         
-        {/* Flip Card Styles */}
+        {/* CSS-only flip for featured cards */}
         <style>{`
-          .flip-card-container {
+          :root {
+            --flip-duration: 600ms;
+            --flip-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+          }
+          
+          /* Base card styles */
+          .project-card {
             min-height: 320px;
             position: relative;
-            perspective: 1000px;
           }
           
-          .flip-card {
-            width: 100%;
-            height: 100%;
-            min-height: 320px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          /* Featured card 3D setup - only for hover-capable devices */
+          @media (hover: hover) and (pointer: fine) {
+            .project-card.featured {
+              perspective: 1200px;
+            }
+            
+            .project-card.featured .card-inner {
+              position: relative;
+              width: 100%;
+              height: 100%;
+              min-height: 320px;
+              transform-style: preserve-3d;
+              transition: transform var(--flip-duration) var(--flip-ease);
+              transform-origin: center center;
+            }
+            
+            /* Hover triggers vertical flip */
+            .project-card.featured:hover .card-inner {
+              transform: rotateX(180deg);
+            }
+            
+            /* Front and back faces */
+            .project-card.featured .card-front,
+            .project-card.featured .card-back {
+              position: absolute;
+              inset: 0;
+              backface-visibility: hidden;
+              -webkit-backface-visibility: hidden;
+            }
+            
+            /* Back face rotated 180deg on X-axis */
+            .project-card.featured .card-back {
+              transform: rotateX(180deg);
+            }
           }
           
-          .flip-card-face {
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+          /* Non-featured cards or touch devices - no flip, simple layout */
+          .project-card:not(.featured) .card-inner,
+          @media (hover: none) {
+            .project-card.featured .card-inner {
+              position: relative;
+              min-height: 320px;
+            }
+            
+            .project-card.featured .card-back {
+              display: none;
+            }
           }
           
-          .flip-card-back {
-            transform: rotateX(180deg);
-          }
-          
-          /* Featured card flip on hover - vertical rotation */
-          .featured-flip .flip-card {
-            cursor: pointer;
-          }
-          
-          .featured-flip:hover .flip-card {
-            transform: rotateX(180deg);
-          }
-          
-          /* Reduced motion support */
+          /* Reduced motion - instant toggle without animation */
           @media (prefers-reduced-motion: reduce) {
-            .featured-flip .flip-card {
-              transition: opacity 0.3s ease;
+            .project-card.featured .card-inner {
+              transition: none !important;
             }
-            .featured-flip:hover .flip-card {
-              transform: none;
-            }
-            .featured-flip:hover .flip-card-front {
+            
+            .project-card.featured:hover .card-front {
               opacity: 0;
             }
-            .featured-flip:hover .flip-card-back {
+            
+            .project-card.featured:hover .card-back {
               opacity: 1;
             }
           }
