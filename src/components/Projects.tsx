@@ -189,7 +189,7 @@ const Projects = () => {
           ))}
         </div>
         
-        {/* CSS-only flip for featured cards */}
+        {/* CSS-only 3D flip for featured cards */}
         <style>{`
           :root {
             --flip-duration: 600ms;
@@ -202,7 +202,7 @@ const Projects = () => {
             position: relative;
           }
           
-          /* Featured card 3D setup - only for hover-capable devices */
+          /* 3D flip setup - only for featured cards on hover-capable devices */
           @media (hover: hover) and (pointer: fine) {
             .project-card.featured {
               perspective: 1200px;
@@ -215,7 +215,6 @@ const Projects = () => {
               min-height: 320px;
               transform-style: preserve-3d;
               transition: transform var(--flip-duration) var(--flip-ease);
-              transform-origin: center center;
             }
             
             /* Hover triggers vertical flip */
@@ -223,24 +222,26 @@ const Projects = () => {
               transform: rotateX(180deg);
             }
             
-            /* Front and back faces */
+            /* Front and back faces - absolutely positioned, stacked */
             .project-card.featured .card-front,
             .project-card.featured .card-back {
               position: absolute;
-              inset: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
               backface-visibility: hidden;
               -webkit-backface-visibility: hidden;
             }
             
-            /* Back face rotated 180deg on X-axis */
+            /* Back face pre-rotated 180deg so it appears correct after flip */
             .project-card.featured .card-back {
               transform: rotateX(180deg);
             }
           }
           
-          /* Non-featured cards or touch devices - no flip, simple layout */
-          .project-card:not(.featured) .card-inner,
-          @media (hover: none) {
+          /* Non-hover devices (mobile/touch) - show front only, no flip */
+          @media (hover: none) or (pointer: coarse) {
             .project-card.featured .card-inner {
               position: relative;
               min-height: 320px;
@@ -249,20 +250,43 @@ const Projects = () => {
             .project-card.featured .card-back {
               display: none;
             }
+            
+            .project-card.featured .card-front {
+              position: relative;
+            }
           }
           
-          /* Reduced motion - instant toggle without animation */
+          /* Non-featured cards - simple layout */
+          .project-card:not(.featured) .card-inner {
+            position: relative;
+            min-height: 320px;
+          }
+          
+          .project-card:not(.featured) .card-back {
+            display: none;
+          }
+          
+          .project-card:not(.featured) .card-front {
+            position: relative;
+          }
+          
+          /* Reduced motion - no animation, instant switch */
           @media (prefers-reduced-motion: reduce) {
             .project-card.featured .card-inner {
               transition: none !important;
             }
             
+            .project-card.featured:not(:hover) .card-back {
+              display: none;
+            }
+            
             .project-card.featured:hover .card-front {
-              opacity: 0;
+              display: none;
             }
             
             .project-card.featured:hover .card-back {
-              opacity: 1;
+              display: block;
+              transform: none;
             }
           }
         `}</style>
