@@ -30,37 +30,17 @@ const ProjectCard = ({
   projectId,
   featured = false
 }: ProjectCardProps) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
-  };
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleFlip();
-    }
-  };
-
   return (
     <div
-      className={`flip-card-container ${featured ? 'md:col-span-2' : ''}`}
+      className={`flip-card-container ${featured ? 'md:col-span-2' : ''} ${featured ? 'featured-flip' : ''}`}
       style={{ perspective: '1000px' }}
     >
       <div
-        className={`flip-card ${isFlipped ? 'flipped' : ''}`}
-        tabIndex={0}
-        role="button"
-        aria-label={`Flip: ${title} — view details`}
-        aria-pressed={isFlipped}
-        onKeyDown={handleKeyDown}
-        onClick={handleFlip}
+        className="flip-card"
         data-project-id={projectId}
         style={{
           transformStyle: 'preserve-3d',
           transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           willChange: 'transform'
         }}
       >
@@ -247,42 +227,22 @@ const Projects = () => {
             height: 100%;
             min-height: 320px;
             position: relative;
+          }
+          
+          /* Featured card flip on hover - vertical rotation */
+          .featured-flip .flip-card {
             cursor: pointer;
-            outline: none;
           }
           
-          .flip-card:focus {
-            outline: 2px solid hsl(var(--primary));
-            outline-offset: 4px;
-            border-radius: 0.75rem;
-          }
-          
-          .flip-card:focus-visible {
-            outline: 2px solid hsl(var(--primary));
-            outline-offset: 4px;
+          .featured-flip:hover .flip-card {
+            transform: rotateX(180deg);
           }
           
           /* Reduced motion support */
           @media (prefers-reduced-motion: reduce) {
-            .flip-card {
-              transition: opacity 0.3s ease !important;
-            }
-            .flip-card.flipped .flip-card-front {
-              opacity: 0;
-            }
-            .flip-card.flipped .flip-card-back {
-              opacity: 1;
-              transform: rotateY(0deg) !important;
-            }
-            .flip-card:not(.flipped) .flip-card-back {
-              opacity: 0;
-            }
-          }
-          
-          /* Mobile tap handling */
-          @media (max-width: 768px) {
-            .flip-card {
-              -webkit-tap-highlight-color: transparent;
+            .featured-flip:hover .flip-card {
+              transform: rotateX(0deg);
+              opacity: 0.8;
             }
           }
         `}</style>
