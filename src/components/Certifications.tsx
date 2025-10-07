@@ -50,39 +50,39 @@ const AchievementCard = ({ title, description }: { title: string; description: s
 const Certifications = () => {
   const certifications = [
     {
-      title: "Deep Learning Specialization",
-      issuer: "Coursera - DeepLearning.AI",
-      date: "September 2021",
-      description: "Comprehensive specialization covering neural networks, deep learning, structuring machine learning projects, CNNs, and sequence models.",
-      credentialUrl: "#"
+      title: "Google Data Analytics Professional Certificate",
+      issuer: "Coursera",
+      date: "May 2024",
+      description: "Comprehensive 8-course certification covering data cleaning, analysis, visualization, and R programming with hands-on projects in SQL, Tableau, and AI-driven analytics.",
+      credentialUrl: "https://www.credly.com/badges/fcc0b4b9-d3d0-462e-91d7-2d9ae377f02b/public_url"
     },
     {
-      title: "TensorFlow Developer Certificate",
-      issuer: "Google",
-      date: "March 2022",
-      description: "Professional certification demonstrating proficiency in using TensorFlow to implement machine learning models for various applications.",
-      credentialUrl: "#"
+      title: "Data Science Lab Badge",
+      issuer: "WorldQuant University",
+      date: "Apr 2025",
+      description: "Awarded for completing hands-on projects in applied machine learning, data science, and model deployment within the WorldQuant Applied AI Lab.",
+      credentialUrl: "https://drive.google.com/file/d/1V8oF4a-0O6ytDfWHvM9i2dK19ybs6sy9/view?usp=sharing"
     },
     {
-      title: "AWS Certified Machine Learning - Specialty",
-      issuer: "Amazon Web Services",
-      date: "January 2023",
-      description: "Validation of ability to design, implement, deploy, and maintain machine learning solutions for real-world problems on AWS.",
-      credentialUrl: "#"
+      title: "Applied AI Labs: Deep Learning for Computer Vision",
+      issuer: "WorldQuant University",
+      date: "Apr 2025",
+      description: "Developed 6 computer vision models using transfer learning, augmentation, and GANs to achieve 90–92% accuracy on real-world datasets.",
+      credentialUrl: "https://github.com/KritPrasad05/Applied-AI_Lab-Deep_Learning_for_Computer_Vision_WorldQuant_University"
     },
     {
-      title: "Computer Vision Professional Certificate",
-      issuer: "NVIDIA Deep Learning Institute",
-      date: "November 2022",
-      description: "Advanced training in computer vision techniques, including object detection, segmentation, and video analysis using NVIDIA's tools.",
-      credentialUrl: "#"
+      title: "Data Analytics Essentials",
+      issuer: "Cisco Networking Academy",
+      date: "Feb 2024",
+      description: "Covered data literacy, storytelling, and visualization principles using real-world datasets, building foundation for business-driven analytics.",
+      credentialUrl: "https://www.credly.com/badges/7241daa5-189d-4c62-8004-390c1fa8be94/public_url"
     },
     {
-      title: "Natural Language Processing Nanodegree",
-      issuer: "Udacity",
-      date: "August 2021",
-      description: "In-depth program covering text processing, feature extraction, sentiment analysis, and neural machine translation.",
-      credentialUrl: "#"
+      title: "Google Generative AI Certificate",
+      issuer: "Google Cloud Skills Boost",
+      date: "Jun 2024",
+      description: "Practical certification demonstrating generative AI applications, including prompt engineering, large language models, and image generation workflows.",
+      credentialUrl: "https://www.cloudskillsboost.google/public_profiles/a70d33a9-87d9-41e2-afe2-11cacce1767f/badges/6894130"
     }
   ];
 
