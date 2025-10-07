@@ -36,61 +36,17 @@ const ProjectCard = ({
       aria-label={featured ? `Featured project: ${title}` : title}
       data-project-id={projectId}
     >
-      <div className="card-inner">
-        {/* Front of card */}
-        <div className="card-front">
-          <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg hover:border-primary/40 focus-within:border-primary/40 transition-all duration-300">
-            <div className="aspect-video overflow-hidden">
-              <div 
-                className="h-full w-full bg-cover bg-center transition-transform duration-700"
-                style={{ backgroundImage: `url(${image})` }}
-                aria-hidden="true"
-              />
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/95 via-background/80 to-transparent">
-              <h3 className="text-xl font-semibold mb-1">{title}</h3>
-              <p className="text-xs text-muted-foreground">{date}</p>
-            </div>
-          </div>
+      <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg hover:border-primary/40 focus-within:border-primary/40 transition-all duration-300">
+        <div className="aspect-video overflow-hidden">
+          <div 
+            className="h-full w-full bg-cover bg-center transition-transform duration-700"
+            style={{ backgroundImage: `url(${image})` }}
+            aria-hidden="true"
+          />
         </div>
-
-        {/* Back of card */}
-        <div className="card-back">
-          <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg">
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${image})` }}
-              aria-hidden="true"
-            />
-            <div className="relative h-full p-6 bg-gradient-to-t from-background/95 via-background/80 to-background/60 flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-semibold mb-3">{title}</h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                  {description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {tags.map((tag, index) => (
-                    <span key={index} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-xs text-muted-foreground mb-4">{date}</p>
-              </div>
-              <a
-                href={projectUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-repo-url={projectUrl}
-                data-ga="project-click"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
-              >
-                see the repo
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
-          </div>
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/95 via-background/80 to-transparent">
+          <h3 className="text-xl font-semibold mb-1">{title}</h3>
+          <p className="text-xs text-muted-foreground">{date}</p>
         </div>
       </div>
     </div>
@@ -195,108 +151,6 @@ const Projects = () => {
             </SectionTransition>
           ))}
         </div>
-        
-        {/* CSS-only 3D flip for featured cards */}
-        <style>{`
-          :root {
-            --flip-duration: 600ms;
-            --flip-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
-          }
-          
-          /* Base card styles */
-          .project-card {
-            min-height: 320px;
-            position: relative;
-          }
-          
-          /* 3D flip setup - only for featured cards on hover-capable devices */
-          @media (hover: hover) and (pointer: fine) {
-            .project-card.featured {
-              perspective: 1200px;
-            }
-            
-            .project-card.featured .card-inner {
-              position: relative;
-              width: 100%;
-              height: 100%;
-              min-height: 320px;
-              transform-style: preserve-3d;
-              transition: transform var(--flip-duration) var(--flip-ease);
-            }
-            
-            /* Hover triggers vertical flip */
-            .project-card.featured:hover .card-inner {
-              transform: rotateX(180deg);
-            }
-            
-            /* Front and back faces - absolutely positioned, stacked */
-            .project-card.featured .card-front,
-            .project-card.featured .card-back {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              backface-visibility: hidden;
-              -webkit-backface-visibility: hidden;
-            }
-            
-            /* Back face pre-rotated 180deg so it appears correct after flip */
-            .project-card.featured .card-back {
-              transform: rotateX(180deg);
-            }
-          }
-          
-          /* Non-hover devices (mobile/touch) - show front only, no flip */
-          @media (hover: none) or (pointer: coarse) {
-            .project-card.featured .card-inner {
-              position: relative;
-              min-height: 320px;
-            }
-            
-            .project-card.featured .card-back {
-              display: none;
-            }
-            
-            .project-card.featured .card-front {
-              position: relative;
-            }
-          }
-          
-          /* Non-featured cards - simple layout */
-          .project-card:not(.featured) .card-inner {
-            position: relative;
-            min-height: 320px;
-          }
-          
-          .project-card:not(.featured) .card-back {
-            display: none;
-          }
-          
-          .project-card:not(.featured) .card-front {
-            position: relative;
-          }
-          
-          /* Reduced motion - no animation, instant switch */
-          @media (prefers-reduced-motion: reduce) {
-            .project-card.featured .card-inner {
-              transition: none !important;
-            }
-            
-            .project-card.featured:not(:hover) .card-back {
-              display: none;
-            }
-            
-            .project-card.featured:hover .card-front {
-              display: none;
-            }
-            
-            .project-card.featured:hover .card-back {
-              display: block;
-              transform: none;
-            }
-          }
-        `}</style>
       </div>
     </section>
   );
