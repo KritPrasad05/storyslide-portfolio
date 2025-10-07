@@ -56,33 +56,40 @@ const ProjectCard = ({
 
         {/* Back of card */}
         <div className="card-back">
-          <div className="h-full overflow-hidden rounded-xl border border-border/40 bg-card shadow-lg p-6 flex flex-col justify-between">
-            <div>
-              <h3 className="text-lg font-semibold mb-3">{title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                {description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {tags.map((tag, index) => (
-                  <span key={index} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
-                    {tag}
-                  </span>
-                ))}
+          <div className="relative h-full overflow-hidden rounded-xl border border-border/40 bg-card/50 shadow-lg">
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${image})` }}
+              aria-hidden="true"
+            />
+            <div className="relative h-full p-6 bg-gradient-to-t from-background/95 via-background/80 to-background/60 flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold mb-3">{title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {tags.map((tag, index) => (
+                    <span key={index} className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground mb-4">{date}</p>
               </div>
-              <p className="text-xs text-muted-foreground mb-4">{date}</p>
+              <a
+                href={projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-repo-url={projectUrl}
+                data-ga="project-click"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
+              >
+                see the repo
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
-            <a
-              href={projectUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-repo-url={projectUrl}
-              data-ga="project-click"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
-            >
-              see the repo
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
           </div>
         </div>
       </div>
