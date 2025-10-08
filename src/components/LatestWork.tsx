@@ -92,30 +92,31 @@ const LatestWork = () => {
   
   const latestWorks = [
     {
-      title: "AI-Powered Medical Diagnosis System",
-      description: "Developing a cutting-edge deep learning system for early detection of diseases from medical imaging data. The system uses a novel architecture combining CNNs and transformer attention mechanisms to achieve state-of-the-art diagnostic accuracy.",
+      title: "🧠 Diffusion-Based Text Generation Framework",
+      description: "Developing a diffusion model architecture that generates coherent and context-aware text through denoising embeddings across timesteps. The research explores timestep embeddings, positional encoding, and denoising schedules to achieve controllable and high-fidelity text synthesis.",
       status: "In Progress",
       type: "Research & Development",
-      technologies: ["PyTorch", "Medical Imaging", "Transformers", "CNNs", "CUDA"],
+      technologies: ["PyTorch", "Transformers", "Diffusion Models", "Embedding Layers", "Tokenization"],
       image: imagePlaceholders[0],
-      link: "#"
+      link: ""
     },
     {
-      title: "Multilingual NLP Framework for Low-Resource Languages",
-      description: "Creating an innovative natural language processing framework specifically designed for languages with limited available training data. The approach uses transfer learning and meta-learning techniques to generalize knowledge from high-resource languages.",
-      status: "Early Stage",
-      type: "Research Project",
-      technologies: ["NLP", "Transfer Learning", "Meta-Learning", "HuggingFace", "TensorFlow"],
-      image: imagePlaceholders[1]
+      title: "💡 Deep Learning Fundamentals Lab — WorldQuant University",
+      description: "Pursuing an intensive, project-based lab that builds deep technical mastery in neural networks and CNN architectures. The lab's 12 projects cover everything from PyTorch basics to real-world applications in healthcare, environmental data, and computer vision.",
+      status: "Active",
+      type: "Deep Learning Lab Program",
+      technologies: ["PyTorch", "CNNs", "Transfer Learning", "Cloud VM Environments", "EDA"],
+      image: imagePlaceholders[1],
+      link: "https://www.worldquant.com/university/"
     }
   ];
 
-  const projectProgress = [
-    { label: "Research & Data Collection", progress: 100 },
-    { label: "Model Architecture Design", progress: 85 },
-    { label: "Model Training & Validation", progress: 70 },
-    { label: "Performance Optimization", progress: 45 },
-    { label: "Deployment & Integration", progress: 20 }
+  const focusAreas = [
+    "Building and optimizing deep neural networks",
+    "Implementing CNNs (LeNet, AlexNet, ResNet, VGG)",
+    "Using transfer learning and regularization for real-world datasets",
+    "Running models on cloud-based virtual machines",
+    "Measuring model performance via accuracy, precision, recall, and loss metrics"
   ];
 
   return (
@@ -149,53 +150,25 @@ const LatestWork = () => {
           ))}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <SectionTransition delay={500}>
-              <h3 className="text-2xl font-display font-semibold mb-6">
-                Development Progress
-              </h3>
-            </SectionTransition>
-            
-            <div className="space-y-4">
-              {projectProgress.map((item, index) => (
-                <SectionTransition key={item.label} delay={600 + index * 100}>
-                  <ProgressCard label={item.label} progress={item.progress} />
-                </SectionTransition>
-              ))}
-            </div>
-          </div>
+        <div>
+          <SectionTransition delay={500}>
+            <h3 className="text-2xl font-display font-semibold mb-6">
+              Focus Areas
+            </h3>
+          </SectionTransition>
           
-          <div>
-            <SectionTransition delay={500}>
-              <h3 className="text-2xl font-display font-semibold mb-6">
-                Current Objectives
-              </h3>
-            </SectionTransition>
-            
-            <SectionTransition delay={600}>
-              <div className="bg-card/80 border border-border/40 rounded-lg p-6">
-                <ul className="space-y-4">
-                  <li className="flex">
-                    <FileCode className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">Optimize transformer architecture for medical imaging analysis</span>
-                  </li>
-                  <li className="flex">
-                    <Layers className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">Collect and preprocess additional training data for low-resource languages</span>
-                  </li>
-                  <li className="flex">
+          <SectionTransition delay={600}>
+            <div className="bg-card/80 border border-border/40 rounded-lg p-6">
+              <ul className="space-y-4">
+                {focusAreas.map((area, index) => (
+                  <li key={index} className="flex">
                     <Code className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">Implement efficient cross-lingual knowledge transfer mechanisms</span>
+                    <span className="text-muted-foreground">{area}</span>
                   </li>
-                  <li className="flex">
-                    <PlayCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">Begin beta testing of the diagnosis system with partner medical institutions</span>
-                  </li>
-                </ul>
-              </div>
-            </SectionTransition>
-          </div>
+                ))}
+              </ul>
+            </div>
+          </SectionTransition>
         </div>
       </div>
     </section>

@@ -88,20 +88,12 @@ const Certifications = () => {
 
   const achievements = [
     {
-      title: "1st Place in International AI Hackathon",
-      description: "Led a team that won first place for developing an AI solution for early disease detection from medical images."
+      title: "Deloitte Data Analytics Virtual Job Simulation",
+      description: "Forage – Aug 2025. Completed Deloitte Australia's Data Analytics Virtual Experience Program. Designed a dynamic Tableau dashboard to track system downtime and utilized Excel to classify 100+ roles into three pay equity categories, demonstrating strong data visualization and analytical capabilities."
     },
     {
-      title: "Research Publication in Top-tier Conference",
-      description: "Published original research on efficient transformers for vision tasks at NeurIPS 2022."
-    },
-    {
-      title: "Open Source Contribution Recognition",
-      description: "Recognized as top contributor to a popular machine learning library, adding key features used by thousands of developers."
-    },
-    {
-      title: "Industry Innovation Award",
-      description: "Received recognition for developing an AI system that reduced manufacturing defects by 35% for a Fortune 500 client."
+      title: "Commonwealth Bank Data Science Virtual Job Simulation",
+      description: "Forage – Jan 2024. Completed Commonwealth Bank's Introduction to Data Science Virtual Experience. Optimized SQL schemas and queries, improving execution speed by 25% and boosting data processing efficiency by 40%, showcasing advanced problem-solving and data engineering proficiency."
     }
   ];
 
