@@ -15,7 +15,7 @@ const CertificationCard = ({ title, issuer, date, description, credentialUrl }: 
   const cardId = title.replace(/\s/g, '-').toLowerCase();
   
   return (
-    <div className="group relative rounded-xl p-6 h-[340px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+    <div className="group relative rounded-xl p-6 h-[280px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
       {/* Base border */}
       <div className="absolute inset-0 rounded-xl border border-primary/20"></div>
       
@@ -98,7 +98,7 @@ const AchievementCard = ({ title, description }: { title: string; description: s
   const cardId = title.replace(/\s/g, '-').toLowerCase();
   
   return (
-    <div className="group relative rounded-xl p-6 h-[340px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
+    <div className="group relative rounded-xl p-6 h-[280px] flex flex-col transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1" style={{ transformStyle: 'preserve-3d' }}>
       {/* Base border */}
       <div className="absolute inset-0 rounded-xl border border-primary/20"></div>
       
