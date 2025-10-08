@@ -1,7 +1,9 @@
 
 import React from 'react';
 import SectionTransition from './SectionTransition';
-import { ArrowUpRight, Clock, Code, FileCode, Layers, PlayCircle } from 'lucide-react';
+import { ArrowUpRight, Clock, Code } from 'lucide-react';
+import diffusionImage from '@/assets/diffusion-text-generation.jpg';
+import worldquantImage from '@/assets/worldquant-deep-learning-lab.jpg';
 
 interface LatestWorkCardProps {
   title: string;
@@ -84,12 +86,6 @@ const ProgressCard = ({ label, progress }: { label: string, progress: number }) 
 );
 
 const LatestWork = () => {
-  // Placeholder images
-  const imagePlaceholders = [
-    "https://images.unsplash.com/photo-1581092160607-ee23d8c9fcb8?q=80&w=1470&auto=format&fit=crop", 
-    "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1470&auto=format&fit=crop",
-  ];
-  
   const latestWorks = [
     {
       title: "🧠 Diffusion-Based Text Generation Framework",
@@ -97,7 +93,7 @@ const LatestWork = () => {
       status: "In Progress",
       type: "Research & Development",
       technologies: ["PyTorch", "Transformers", "Diffusion Models", "Embedding Layers", "Tokenization"],
-      image: imagePlaceholders[0],
+      image: diffusionImage,
       link: ""
     },
     {
@@ -106,7 +102,7 @@ const LatestWork = () => {
       status: "Active",
       type: "Deep Learning Lab Program",
       technologies: ["PyTorch", "CNNs", "Transfer Learning", "Cloud VM Environments", "EDA"],
-      image: imagePlaceholders[1],
+      image: worldquantImage,
       link: "https://www.worldquant.com/university/"
     }
   ];
