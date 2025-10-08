@@ -25,7 +25,15 @@ const LatestWorkCard = ({
   link 
 }: LatestWorkCardProps) => (
   <div className="group relative overflow-hidden rounded-xl border border-border/40 bg-card/80 hover:shadow-md transition-all duration-300">
-    <div className="p-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="md:col-span-1 overflow-hidden h-full">
+        <div 
+          className="h-full w-full bg-cover bg-center transition-transform duration-700 ease-in-out group-hover:scale-105"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
+      </div>
+      
+      <div className="p-6 md:col-span-2">
         <div className="flex justify-between items-start mb-3">
           <div className="flex items-center">
             <span className="inline-flex items-center text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 mr-2">
@@ -49,14 +57,15 @@ const LatestWorkCard = ({
           ))}
         </div>
         
-      {link && (
-        <a
-          href={link}
-          className="inline-flex items-center text-sm font-medium text-primary hover:underline"
-        >
-          View Project <ArrowUpRight className="h-3 w-3 ml-1" />
-        </a>
-      )}
+        {link && (
+          <a
+            href={link}
+            className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+          >
+            View Project <ArrowUpRight className="h-3 w-3 ml-1" />
+          </a>
+        )}
+      </div>
     </div>
   </div>
 );
